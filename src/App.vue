@@ -1,26 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="card">
+          <div class="card-body">
+            <div class="fs-3 text-center">Todos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <TodosLists />
+  </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TodosLists from "./components/TodosLists";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { TodosLists },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
