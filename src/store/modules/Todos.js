@@ -1,16 +1,36 @@
+import axios from "axios";
+
 export default {
   state: {
-    todos: [
-      { id: 1, title: "Title 1" },
-      { id: 2, title: "Title 2" },
-      { id: 3, title: "Title 3" },
-    ],
+    todos: [],
   },
   getters: {
     myTodos(state) {
       return state.todos;
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setTodos(state, todos) {
+      state.todos = todos;
+    },
+
+    setTodo(state, todo) {
+      state.todos.unshift(todo);
+    },
+  },
+  actions: {
+    async getTodos({ commit }) {
+      let res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      let todos = res.data;
+      commit("setTodos", todos);
+    },
+
+    async addTodo({ commit }, newTodo) {
+      let res = await axios.post(
+        "https://jsonplaceholder.typicode.com/todos",
+        newTodo
+      );
+      commit("setTodo", res.data);
+    },
+  },
 };
