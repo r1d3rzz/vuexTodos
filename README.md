@@ -1,8 +1,13 @@
-# todo
+# Todos
 
 ## Project setup
 ```
 npm install
+```
+
+## Create Todos Api
+```
+npm run dev
 ```
 
 ### Compiles and hot-reloads for development
