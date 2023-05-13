@@ -8,7 +8,9 @@
           v-model="title"
           placeholder="Add your new Todos here..."
         />
-        <button class="btn btn-primary" @click="addTodos">Add</button>
+        <button class="btn btn-primary" @click="addTodos" :disabled="isAdding">
+          Add
+        </button>
       </div>
     </div>
   </div>
@@ -20,16 +22,22 @@ import { ref } from "vue";
 export default {
   setup() {
     let title = ref("");
+    let isAdding = ref(false);
 
     let addTodos = () => {
+      if (title.value == "") return;
+
+      isAdding.value = true;
       let newTodo = {
         title: title.value,
       };
-      store.dispatch("addTodo", newTodo);
-      title.value = "";
+      store.dispatch("addTodo", newTodo).then(() => {
+        title.value = "";
+        isAdding.value = false;
+      });
     };
 
-    return { title, addTodos };
+    return { title, addTodos, isAdding };
   },
 };
 </script>
